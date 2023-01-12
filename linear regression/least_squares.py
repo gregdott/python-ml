@@ -22,6 +22,7 @@ sy = 0 # sum of y values
 sxs = 0 # sum of x squared values
 sxy = 0 # sum of x*y values
 
+# Loop through all sets of ['LSTAT', 'MEDV'] and do the required calculations
 for i in range(n):
     sx += tuples[i][0]
     sy += tuples[i][1]
@@ -31,11 +32,13 @@ for i in range(n):
 a = ((n*sxy) - (sx*sy))/((n*sxs) - (sx*sx))
 b = (sy - (a*sx))/n
 
-plt.scatter(*zip(*tuples))
+plt.scatter(*zip(*tuples)) # scatter plot of all the data points
 
+# couldn't find a thing in matplot lib for just drawing a straight line from a formula
+# so had to do it manually below
 axes = plt.gca()
 x_vals = np.array(axes.get_xlim())
 y_vals = b + a * x_vals
-plt.plot(x_vals, y_vals, '--')
+plt.plot(x_vals, y_vals, '--') # plot of the line
 
 plt.show()
